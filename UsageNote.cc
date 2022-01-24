@@ -113,6 +113,7 @@ p1、版本回退
 
 
 ---------------------------------------------添加远程仓库--------------------------------------------------
+1添加GitHub上传确认秘钥
 p1、在Windows的目录C:\Users\JZ007下查看有无.ssh文件夹，有的话包含id_rsa和id_rsa.pub两个文件；
 	这两个就是SSH Key的秘钥对，id_rsa是私钥，不能泄露出去，id_rsa.pub是公钥，可以放心地告诉任何人。
 p2、如果没有，打开Shell（Windows下打开Git Bash），创建SSH Key：
@@ -127,5 +128,53 @@ p4、Git支持SSH协议，所以，GitHub只要知道了你的公钥，就可以
 	在GitHub上免费托管的Git仓库，任何人都可以看到喔（但只有你自己才能改）。所以，不要把敏感信息放进去。
 网友补充：
 	ssh key和github都是多对多的
+
+2将本地仓库推送到远程仓库并关联起来
+p1、在GitHub新建Repository，命名与本地一样
+p2、使用 git remote add origin git@github.com:JZ007WJH/FloderName.git，将本地仓库与远程仓库关联起来，远程库的名字就是origin，这是Git默认的叫法，也可以改成别的；JZ007WJH替换成你自己的GitHub账户名
+p3、使用git push -u origin master，把本地库的所有内容推送到远程库上；第一次使用Git的clone或者push命令连接GitHub时，会得到一个提示，这是因为Git使用SSH连接，而SSH连接在第一次验证GitHub服务器的Key时，需要你确认GitHub的Key的指纹信息是否真的来自GitHub的服务器，输入yes回车即可。
+Git会输出一个警告，告诉你已经把GitHub的Key添加到本机的一个信任列表里了
+
+3删除远程仓库
+p1、先在Git bash上用git remote -v 查看关联版本
+p2、用git remote rm origin取消关联  
+p3、在GitHub上该项目设置的最下面删除
+
+4先建立远程仓库再clone到本地
+注意使用ssh方式会更快，但是工作后有一些公司仅支持http协议
+举例clone新建的GitSkills仓库
+ssh方式：git clone git@github.com:JZ007WJH/gitskills.git
+https方式： git clone https://github.com/JZ007WJH/GitSkills.git
+
+---------------------------------------------分支--------------------------------------------------
+Git鼓励大量使用分支：
+
+查看分支：git branch
+
+创建分支：git branch <name>
+
+切换分支：git checkout <name>或者git switch <name>
+
+创建+切换分支：git checkout -b <name>或者git switch -c <name>
+
+合并某分支到当前分支：git merge <name>
+
+删除分支：git branch -d <name>
+
+
+------------------------------------分支冲突及处理--------------------------------------------------
+1冲突怎么来的
+	新建一个分支，修改，添加、提交之后
+	切换到其他分支如master分支，继续修改该处，添加、提交
+	这样操作之后，相当于有同一个文件同一处有两份来自不同分支提交的修改
+	如果使用git merge 命令合并  会显示合并冲突 无法完成合并
+	//处于合并冲突状态时，不能切换分支也不能再次合并，用git merge --abort命令退出合并状态
+2、解决办法
+	此时 可以用cat查看文件   用vim修改文件  删除冲突部分并修正//cat 和vim 都无需加git前缀 
+	使用git log --graph 命令图示分支之间冲突关系
+	然后再次添加、提交，并切换到另外一个分支下，用git merge命令合并刚修改的这个分支
+	两个分支就一样了
+	
+	
 	
 
