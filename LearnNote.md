@@ -1,10 +1,4 @@
-
-
-
-
-## 学习时间
-
-2022年1月16日-2022年1月22日 每天晚上及业余时间
+//time:2022年1月16日---2022年1月24日
 
 ## 安装Git
 
@@ -17,52 +11,41 @@
 
 ## 创建版本库方法
 
-1. 在本地创建一个空的GitHub
+1、创建一个空的GitHub命令是
+	mkdir flodername
+	cd  flodername
+	pwd  //显示你当前所在位置
 
-   1. ​	mkdir flodername
-   2. ​	cd  flodername
-   3. ​	pwd  //显示你当前所在位置
+2、初始化版本库
+	使用命令 git init
 
-2. 初始化版本库  
-
-   1. 使用命令 git init查看本地仓库的默认存放位置
-   2. 更改本地仓库默认存放位置：在windows开始菜单栏找到Git图标，打开快捷方式的位置，然后右键该快递方式，选择属性，在弹出窗口的起始位置粘贴你想要更改的位置即可
-
-3. 添加（上传）一个文件，需要分三步
-   	1）先在本地创建一个文件（比如txt、md、c等）
-   		创建文件 touch FileName（含扩展名）
-   		删除文件 rm  FileName
-   	2）使用 git add  filename.txt   
-
-   ​		将本地的文件添加到暂存区，可反复多次添加工作区的修改，最后一次性提交，就会全部提交。
-   ​		如果添加了
-   ​	3）使用 git commit -m "添加提交说明"  
-
-   ​		将添加的文件提交到GitHub，可以一次添加多个文件
-   特别提醒：以上所有命令操作都是在自己的本地仓库里面操作。即需要cd到该新建的本地仓库文件夹
+3、添加（上传）一个文件，需要分三步
+	1）先在本地创建一个文件（比如txt、md、c等）//最好不要使用记事本创建，可以更改为.c文件用notepad++写
+		创建文件 touch FileName.txt
+		删除文件 rm  FileName.txt
+	2）使用 git add  filename.txt   //将本地的文件添加到暂存区，可反复多次添加工作区的修改，最后一次性提交，就会全部提交。
+		如果添加了
+	3）使用 git commit -m "添加提交说明"  //将添加的文件提交到GitHub，可以一次添加多个文件
+特别提醒：以上所有命令操作都是在自己的GitHub里面操作。
 
 ## 查看修改
 
 p1、修改文件后查看提交状态
 	git status//查看工作区是否有需要有添加和提交的文件
-
-​	git diff  //对比展示详细的修改区别
-
-​	git add    
-
-​	git commit //再次重新添加和提交已修改的文件，完成提交
-​	
+	git diff  //对比展示详细的修改区别
+	git add    
+	git commit //再次重新添加和提交已修改的文件，完成提交
+	
 注意：
-​	p1）要明白这3个概念，工作区（working tree），暂存区（index /stage），仓库（repository）
-​		git跟不同的参数，比较不同的区间的版本。
-​		git diff：是查看working tree与index的差别的，就是查看工作区修改的，有没有添加到暂存区，没添加到，就有不同。
-​		git diff --cached：是查看index与repository的差别的，查看已经添加到暂存区的有没有提交，没提交，就有不同。
-​		git diff HEAD：是查看working tree和repository的差别的。其中：HEAD代表的是最近的一次commit的信息。直接查询工作区做的修改有没有提交到仓库
-​	综上所述：git diff 后面跟文件名称是是查看工作区（working tree）与暂存区（index）的差别的。
-​	
+	要明白这3个概念，工作区（working tree），暂存区（index /stage），仓库（repository）
+		git跟不同的参数，比较不同的区间的版本。
+		git diff：是查看working tree与index的差别的，就是查看工作区修改的，有没有添加到暂存区，没添加到，就有不同。
+		git diff --cached：是查看index与repository的差别的，查看已经添加到暂存区的有没有提交，没提交，就有不同。
+		git diff HEAD：是查看working tree和repository的差别的。其中：HEAD代表的是最近的一次commit的信息。直接查询工作区做的修改有没有提交到仓库
+	综上所述：git diff 后面跟文件名称是是查看工作区（working tree）与暂存区（index）的差别的。
+	
 
-
----------------------------------------------版本回退--------------------------------------------------
+##版本回退
 
 p1、版本回退
 	使用git log 命令查看当前文件已有的历史版本
@@ -118,27 +101,78 @@ p1、版本回退
 
 ---------------------------------------------删除文件--------------------------------------------------
 删除文件
-从工作区删除文件用 rm filename
-从暂存区删除已经添加的文件用 git rm filename
-从版本库删除文件  
+	从工作区删除文件用 rm filename
+	从暂存区删除已经添加的文件用 git rm filename
+	从版本库删除文件  
 
-'讲的不是很清楚，后面再整理'
+	'讲的不是很清楚，后面再整理'
 
 
 
 ---------------------------------------------添加远程仓库--------------------------------------------------
-p1、在Windows的目录C:\Users\JZ007下查看有无.ssh文件夹，有的话包含id_rsa和id_rsa.pub两个文件；
-	这两个就是SSH Key的秘钥对，id_rsa是私钥，不能泄露出去，id_rsa.pub是公钥，可以放心地告诉任何人。
-p2、如果没有，打开Shell（Windows下打开Git Bash），创建SSH Key：
-	输入命令：$ ssh-keygen -t rsa -C "youremail@example.com"
-	把邮件地址换成自己常用邮件地址，然后一路回车，使用默认值即可，非军事目的，所以也无需设置密码。
-	继续在C:\Users\JZ007下查看这两个文件
-p3、登陆GitHub，打开“Account settings”，“SSH Keys”页面：
-	然后，点“Add SSH Key”，填上任意Title，在Key文本框里粘贴id_rsa.pub文件的内容：
-	点“Add Key”，你就应该看到已经添加的Key：
-p4、Git支持SSH协议，所以，GitHub只要知道了你的公钥，就可以确认只有你自己才能推送。
-	GitHub允许你添加多个Key。假定你有若干电脑，你一会儿在公司提交，一会儿在家里提交，只要把每台电脑的Key都添加到GitHub，就可以在每台电脑上往GitHub推送了
-	在GitHub上免费托管的Git仓库，任何人都可以看到喔（但只有你自己才能改）。所以，不要把敏感信息放进去。
-网友补充：
-	ssh key和github都是多对多的
+1添加GitHub上传确认秘钥
+	p1、在Windows的目录C:\Users\JZ007下查看有无.ssh文件夹，有的话包含id_rsa和id_rsa.pub两个文件；
+		这两个就是SSH Key的秘钥对，id_rsa是私钥，不能泄露出去，id_rsa.pub是公钥，可以放心地告诉任何人。
+	p2、如果没有，打开Shell（Windows下打开Git Bash），创建SSH Key：
+		输入命令：$ ssh-keygen -t rsa -C "youremail@example.com"
+		把邮件地址换成自己常用邮件地址，然后一路回车，使用默认值即可，非军事目的，所以也无需设置密码。
+		继续在C:\Users\JZ007下查看这两个文件
+	p3、登陆GitHub，打开“Account settings”，“SSH Keys”页面：
+		然后，点“Add SSH Key”，填上任意Title，在Key文本框里粘贴id_rsa.pub文件的内容：
+		点“Add Key”，你就应该看到已经添加的Key：
+	p4、Git支持SSH协议，所以，GitHub只要知道了你的公钥，就可以确认只有你自己才能推送。
+		GitHub允许你添加多个Key。假定你有若干电脑，你一会儿在公司提交，一会儿在家里提交，只要把每台电脑的Key都添加到GitHub，就可以在每台电脑上往GitHub推送了
+		在GitHub上免费托管的Git仓库，任何人都可以看到喔（但只有你自己才能改）。所以，不要把敏感信息放进去。
+	网友补充：
+		ssh key和github都是多对多的
+
+2将本地仓库推送到远程仓库并关联起来
+	p1、在GitHub新建Repository，命名与本地一样
+	p2、使用 git remote add origin git@github.com:JZ007WJH/FloderName.git，将本地仓库与远程仓库关联起来，远程库的名字就是origin，这是Git默认的叫法，也可以改成别的；JZ007WJH替换成你自己的GitHub账户名
+	p3、使用git push -u origin master，把本地库的所有内容推送到远程库上；第一次使用Git的clone或者push命令连接GitHub时，会得到一个提示，这是因为Git使用SSH连接，而SSH连接在第一次验证GitHub服务器的Key时，需要你确认GitHub的Key的指纹信息是否真的来自GitHub的服务器，输入yes回车即可。
+	Git会输出一个警告，告诉你已经把GitHub的Key添加到本机的一个信任列表里了
+
+3删除远程仓库
+	p1、先在Git bash上用git remote -v 查看关联版本
+	p2、用git remote rm origin取消关联  
+	p3、在GitHub上该项目设置的最下面删除
+
+4先建立远程仓库再clone到本地
+	注意使用ssh方式会更快，但是工作后有一些公司仅支持http协议
+	举例clone新建的GitSkills仓库
+	ssh方式：git clone git@github.com:JZ007WJH/gitskills.git
+	https方式： git clone https://github.com/JZ007WJH/GitSkills.git
+
+---------------------------------------------分支--------------------------------------------------
+Git鼓励大量使用分支：
+	查看分支：git branch
+	创建分支：git branch <name>
+	切换分支：git checkout <name>或者git switch <name>
+	创建+切换分支：git checkout -b <name>或者git switch -c <name>
+	合并某分支到当前分支：git merge <name>
+	删除分支：git branch -d <name>
+
+
+------------------------------------分支冲突及处理--------------------------------------------------
+1冲突怎么来的
+	新建一个分支，修改，添加、提交之后
+	切换到其他分支如master分支，继续修改该处，添加、提交
+	这样操作之后，相当于有同一个文件同一处有两份来自不同分支提交的修改
+	如果使用git merge 命令合并  会显示合并冲突 无法完成合并
+	//处于合并冲突状态时，不能切换分支也不能再次合并，用git merge --abort命令退出合并状态
+2、解决办法
+	此时 可以用cat查看文件   用vim修改文件  删除冲突部分并修正//cat 和vim 都无需加git前缀 
+	使用git log --graph 命令图示分支之间冲突关系
+	然后再次添加、提交，并切换到另外一个分支下，用git merge命令合并刚修改的这个分支
+	两个分支就一样了
+	
+	
+------------------------------------分支管理策略----------------------------------------------------
+通常，合并分支时，如果可能，Git会用Fast forward模式，但这种模式下，删除分支后，会丢掉分支信息。
+如果要强制禁用Fast forward模式，Git就会在merge时生成一个新的commit，这样，从分支历史上就可以看出分支信息。
+使用git merge --no-ff -m "merge with no-ff" dev     //--no-ff禁用Fast forward模式
+
+分支使用策略
+master分支应该是非常稳定的，也就是仅用来发布新版本，平时不能在上面干活；
+	
 	
